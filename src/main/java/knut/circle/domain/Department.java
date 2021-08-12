@@ -1,5 +1,6 @@
 package knut.circle.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,15 @@ import java.util.List;
 @Setter
 @Getter
 public class Department {
+
+    public Department() {
+
+    }
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "department_id", insertable = false, updatable = false)

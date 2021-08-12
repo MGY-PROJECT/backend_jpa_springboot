@@ -22,6 +22,6 @@ public class JoinCircle {
     @JoinColumn(name = "circle_id")
     private Circle circle;
 
-    private LocalDateTime startDate; // 가입날짜
+    private LocalDateTime startDate = LocalDateTime.now(); // 가입날짜
     private LocalDateTime endDate;  // 탈퇴날짜
 }

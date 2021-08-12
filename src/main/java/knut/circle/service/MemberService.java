@@ -3,6 +3,7 @@ package knut.circle.service;
 import knut.circle.domain.Member;
 import knut.circle.dto.CreateMemberRequest;
 import knut.circle.repository.MemberRepository;
+import knut.circle.repository.MemberRepositoryInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class MemberService {
 
-    private final MemberRepository memberRepository;
+    private final MemberRepositoryInterface memberRepository;
 
     @Transactional
     public Long saveMember(Member member){

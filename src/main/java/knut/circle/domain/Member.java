@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,8 +34,8 @@ public class Member {
     @NotNull
     private String email; // 사용자 이메일
 
-    private LocalDateTime startDate = LocalDateTime.now();
-    private LocalDateTime endDate;
+    @Embedded
+    private CommonTime commonTime;
 
     @Enumerated(EnumType.STRING)
     private ActiveStatus activeStatus = ActiveStatus.ENABLE;

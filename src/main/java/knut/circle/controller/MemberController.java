@@ -1,7 +1,7 @@
 package knut.circle.controller;
 
 import knut.circle.domain.Member;
-import knut.circle.dto.Common.Data;
+import knut.circle.domain.CommonTime;
 import knut.circle.dto.CreateMemberRequest;
 import knut.circle.dto.CreateMemberResponse;
 import knut.circle.service.DepartmentService;
@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +38,7 @@ public class MemberController {
         member.setPassword(bCryptPasswordEncoder.encode(createMemberRequest.getPassword()));
         member.setEmail(createMemberRequest.getEmail());
         member.addDepartment(departmentService.findDept(createMemberRequest.getDepartmentId()));
+        member.setCommonTime(new CommonTime());
         member.setRoles("ROLE_USER");
 
         Long savedMemberId = memberService.saveMember(member);

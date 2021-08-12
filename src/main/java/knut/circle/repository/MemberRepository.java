@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceProperty;
 
 @Repository
-public class MemberRepository {
+public class MemberRepository implements MemberRepositoryInterface{
 
     @PersistenceContext
     private EntityManager em; // 생성자로 받아도 됨.
