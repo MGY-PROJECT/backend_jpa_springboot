@@ -1,7 +1,9 @@
 package knut.circle.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,14 +12,32 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor //for init
+@Slf4j
 public class Circle {
+
+    public Circle(@NotNull String name,
+                  CampusEnum campus,
+                  String background,
+                  String profile,
+                  CommonTime commonTime) {
+        this.name = name;
+        this.campus = campus;
+        this.background = background;
+        this.profile = profile;
+        this.commonTime = commonTime;
+    }// for init
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "circle_id")
     private Long id;
 
     @NotNull
-    @Column(insertable = false, updatable = false)
+    @Column(updatable = false)
     private String name;
+
+    @Embedded
+    private CommonTime commonTime; //동아리 창설 시각
 
 //     어쩔 수 없는 반정규화 ㅅㄱㅇ
 
@@ -26,8 +46,11 @@ public class Circle {
 //    private Campus campus;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 2, updatable = false)
+    @Column(length = 3)
     private CampusEnum campus;
+
+    private String background; //path
+    private String profile;    //path2
 
     @OneToMany(mappedBy = "circle")
     private List<JoinCircle> joinCircles = new ArrayList<>();
@@ -38,10 +61,11 @@ public class Circle {
 
 
 
-
     public void addClassification(Classification classification){
-        if(classification.getCircles().contains(this)){
+        if(classification.getCircles().contains(this) && this.classification != null){
+            log.info("실패");
         }else{
+            log.info("성공");
             classification.getCircles().add(this);
             this.classification = classification;
         }

@@ -1,6 +1,6 @@
 package knut.circle.service;
 
-import knut.circle.domain.Department;
+import knut.circle.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +19,7 @@ public class InitDb {
     @PostConstruct
     public void init(){
         initService.dbInit1();
+        initService.dbInit2();
     }
 
 
@@ -119,6 +120,109 @@ public class InitDb {
         }
 
         public void dbInit2(){
+            Classification health = new Classification("체육");
+            Classification music = new Classification("음악");
+            Classification volunteer = new Classification("봉사");
+            Classification religion = new Classification("종교");
+            Classification study = new Classification("학술");
+            Classification art = new Classification("문예");
+
+            CommonTime commonTime = new CommonTime();
+
+            Circle kaka = new Circle("카카", CampusEnum.C, null, null,commonTime);
+            kaka.addClassification(health);
+            Circle o2 = new Circle("오투", CampusEnum.C, null, null,commonTime);
+            o2.addClassification(health);
+            Circle hangkok = new Circle("행콕", CampusEnum.C, null, null,commonTime);
+            hangkok.addClassification(health);
+            Circle perfect = new Circle("퍼펙트", CampusEnum.C, null, null,commonTime);
+            perfect.addClassification(health);
+            Circle wekid = new Circle("위키드", CampusEnum.C, null, null,commonTime);
+            wekid.addClassification(health);
+            Circle mountain = new Circle("산악부", CampusEnum.C, null, null,commonTime);
+            mountain.addClassification(health);
+            Circle passion = new Circle("열정", CampusEnum.C, null, null,commonTime);
+            passion.addClassification(health);
+            Circle split = new Circle("스플릿", CampusEnum.C, null, null,commonTime);
+            split.addClassification(health);
+            Circle kookwon = new Circle("국원검우회", CampusEnum.C, null, null,commonTime);
+            kookwon.addClassification(health);
+            Circle highrun = new Circle("하이런", CampusEnum.C, null, null,commonTime);
+            highrun.addClassification(health);
+            Circle best5 = new Circle("best5", CampusEnum.C, null, null,commonTime);
+            best5.addClassification(health);
+            Circle normal = new Circle("보통사람들", CampusEnum.C, null, null,commonTime);
+            normal.addClassification(health);
+
+            Circle finale = new Circle("피날레", CampusEnum.C, null, null,commonTime);
+            finale.addClassification(music);
+            Circle bital = new Circle("바이탈사인", CampusEnum.C, null, null,commonTime);
+            bital.addClassification(music);
+            Circle poseidon = new Circle("포세이돈", CampusEnum.C, null, null,commonTime);
+            poseidon.addClassification(music);
+            Circle soridam = new Circle("소리담", CampusEnum.C, null, null,commonTime);
+            soridam.addClassification(music);
+            Circle sinmoongo = new Circle("신문고", CampusEnum.C, null, null,commonTime);
+            sinmoongo.addClassification(music);
+            Circle sixline = new Circle("식스라인", CampusEnum.C, null, null,commonTime);
+            sixline.addClassification(music);
+
+            Circle police = new Circle("폴리스", CampusEnum.C, null, null,commonTime);
+            police.addClassification(volunteer);
+            Circle youthJC = new Circle("YouthJC", CampusEnum.C, null, null,commonTime);
+            youthJC.addClassification(volunteer);
+            Circle leo = new Circle("LEO", CampusEnum.C, null, null,commonTime);
+            leo.addClassification(volunteer);
+            Circle knutunion = new Circle("KNUT해외봉사연합", CampusEnum.C, null, null,commonTime);
+            knutunion.addClassification(volunteer);
+            Circle friends = new Circle("러빙프렌즈", CampusEnum.C, null, null,commonTime);
+            friends.addClassification(volunteer);
+
+            Circle ccc = new Circle("CCC", CampusEnum.C, null, null,commonTime);
+            ccc.addClassification(religion);
+            Circle bangjoo = new Circle("방주짓는사람들", CampusEnum.C, null, null,commonTime);
+            bangjoo.addClassification(religion);
+
+            Circle egao = new Circle("에가오", CampusEnum.C, null, null,commonTime);
+            egao.addClassification(study);
+            Circle unipeace = new Circle("유니피스", CampusEnum.C, null, null,commonTime);
+            unipeace.addClassification(study);
+
+            Circle love = new Circle("사랑방극예술연구회", CampusEnum.C, null, null,commonTime);
+            love.addClassification(art);
+            Circle shuter = new Circle("셔터스네이크", CampusEnum.C, null, null,commonTime);
+            shuter.addClassification(art);
+
+
+            Circle buzzer = new Circle("버저비터", CampusEnum.J, null, null,commonTime);
+            buzzer.addClassification(health);
+            Circle go = new Circle("GO유도", CampusEnum.J, null, null,commonTime);
+            go.addClassification(health);
+
+            Circle stop = new Circle("절주", CampusEnum.J, null, null,commonTime);
+            stop.addClassification(volunteer);
+
+            Circle pax = new Circle("PAX", CampusEnum.J, null, null,commonTime);
+            pax.addClassification(religion);
+
+            Circle swings = new Circle("스윙스", CampusEnum.E, null, null,commonTime);
+            swings.addClassification(health);
+
+            Circle apex = new Circle("APEX", CampusEnum.E, null, null,commonTime);
+            apex.addClassification(music);
+
+            Circle number = new Circle("1067", CampusEnum.E, null, null,commonTime);
+            number.addClassification(study);
+
+            em.persist(health);
+            em.persist(study);
+            em.persist(art);
+            em.persist(religion);
+            em.persist(volunteer);
+            em.persist(music);
+
+            em.flush();
+
 
         }
     }
